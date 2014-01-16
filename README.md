@@ -5,8 +5,7 @@ Judging from the documentation, it appears methods and libraries for accessing G
 but this application was working as of January 2014.
 
 ## Building the Application
-In order to build the application, you will need to add an appSettings section to the App.config file with the following
-keys and  associated values:
+In order to build the application, you will need to add values to the following keys in the App.config appSettings section:
 
 1. ServiceAccountEmail: Created in the Google Developers Console under the application from which you will pull analytics
  data. Currently, you
