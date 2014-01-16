@@ -18,25 +18,34 @@ namespace GoogleService
         public static void Main(string[] args)
         {
             Console.WriteLine("Google Analytics API: Service Account sample");
-            Console.WriteLine("==========================");
+            Console.WriteLine("============================================");
 
+            // Service account set up in the Google Developer Console.
             string serviceAccountEmail =
                 ConfigurationSettings.AppSettings["ServiceAccountEmail"];
 
-            var escapedFilePathToCertificate = "C:\\key.p12.pfx";
+            /*
+             * Certificate from Service Account saved under my Windows profile 
+             * in the (hidden) AppData/Roaming folder.
+             */
+            var pathToCertificate = 
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                "\\" + ConfigurationSettings.AppSettings["CertificateName"];
+
+            // Password for the certificate provided by Google upon download.
             var certificatePassword = "notasecret";
+
             var certificate = new X509Certificate2(
-                escapedFilePathToCertificate,
+                pathToCertificate,
                 certificatePassword,
                 X509KeyStorageFlags.Exportable);
 
             ServiceAccountCredential credential = new ServiceAccountCredential(
                new ServiceAccountCredential.Initializer(serviceAccountEmail)
                {
-                   Scopes = new[] { AnalyticsService.Scope.Analytics }
+                   Scopes = new[] { AnalyticsService.Scope.AnalyticsReadonly }
                }.FromCertificate(certificate));
 
-            // Create the service.
             var service = new AnalyticsService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
@@ -44,13 +53,18 @@ namespace GoogleService
                 });
 
             var profileId = ConfigurationSettings.AppSettings["ProfileId"];
-            var list = service.Data.Ga.Get("ga:" + profileId,
-                "2014-01-01", // Start date.
-                "2014-01-15", // End date.
-                "ga:visitors") // Metrics.
+
+            string metricsStartDate = "2014-01-14";
+            string metricsEndDate = "2014-01-16";
+            string metrics = "ga:visitors";
+
+            var analyticsData = service.Data.Ga.Get("ga:" + profileId,
+                metricsStartDate,
+                metricsEndDate,
+                metrics)
                 .Execute();
 
-            Console.WriteLine("  Visitors: " + list.TotalsForAllResults["ga:visitors"]);
+            Console.WriteLine("   Visitors: " + analyticsData.TotalsForAllResults["ga:visitors"]);
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
