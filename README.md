@@ -1,8 +1,8 @@
 Google Analytics Service Account Sample
 =========
 Console application written in C# to demonstrate accessing Google Analytics Data via a Service Account and OAuth 2.0. 
-Judging from the documentation, it appears methods and libraries for accessing Google Apis change constantly,
-but this application was working as of January 2014.
+Judging from the documentation, it appears methods and libraries for accessing Google Apis change constantly, but
+this application was working as of January 2014.
 
 ## Building the Application
 In order to build the application, you will need to add values to the following keys in the App.config appSettings section:

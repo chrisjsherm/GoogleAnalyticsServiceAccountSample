@@ -27,6 +27,7 @@ namespace GoogleService
             /*
              * Certificate from Service Account saved under my Windows profile 
              * in the (hidden) AppData/Roaming folder.
+             * E.g. "C:\\Users\\[UserName]\\AppData\\Roaming\\[certificate-name]".
              */
             var pathToCertificate = 
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
