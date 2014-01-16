@@ -9,7 +9,8 @@ In order to build the application, you will need to add values to the following 
 
 1. ServiceAccountEmail: Created in the Google Developers Console under the application from which you will pull analytics
  data. Currently, you
-navigate to APIs & auth > Credentials > OAuth > CREATE NEW CLIENT ID
+navigate to APIs & auth > Credentials > OAuth > CREATE NEW CLIENT ID. You also need to add this address to the Admin section
+of your Google Analytics dashboard under User Management for your application. The account will need "Read & Analyze" access. 
 2. CertificateName: The name of the certificate you downloaded upon creation of the Service Account. I have configured
 the application to look in the current user's Windows account under the (hidden) AppData/Roaming folder.
 3. ApplicationName: The name you gave your application in the Google Developers Console.
