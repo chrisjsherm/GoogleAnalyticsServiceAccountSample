@@ -18,6 +18,8 @@ the application to look in the current user's Windows account under the (hidden)
  application, following the letter "p". Yes, I realize this is obscure, but I did not come across a straightforward way to find 
 this attribute.
 
+References to the necessary Nuget packages should be downloaded automatically upon first build so long as you have enabled
+ Nuget Package Restore in Visual Studio.
 
 ## MIT License
 
